@@ -1,5 +1,7 @@
 import java.util.*;
 import java.io.*;
+import javax.swing.*;
+import java.awt.Dimension;
 
 /**********************************
 PLEASE PROVIDE DOCUMENTATION IN THIS 
@@ -10,9 +12,7 @@ class Program
 {
 	public static void main(String[] args) 
 	{
-		/*
-		main goes here
-		*/		
+		new MainLogin();		
 	}
 }
 
@@ -86,13 +86,49 @@ class StudentPage extends Student
 	*/
 }
 
-class MainLogin
+class MainLogin extends JFrame
 {
-	Login()
+	private JPanel p;
+	private JButton b;
+	private JLabel user, pass;
+	private JTextField username, password;
+
+	MainLogin()
 	{
-		/*
-		Provides the main login menu.
-		*/
+		super("WebBro Login");
+
+		p = new JPanel();
+		p.setLayout(new FlowLayout(FlowLayout.CENTER));
+		p.setBorder(new TitledBorder("Login"));
+
+		user = new JLabel("Username");
+		user.setPreferredSize(new Dimension(100,30));
+		p.add(user);
+
+		username = new JTextField();
+		username.setPreferredSize(new Dimension(150,30));
+		p.add(username);
+
+		pass = new JLabel("Password");
+		pass.setPreferredSize(new Dimension(100,30));
+		p.add(pass);
+
+		password = new JTextField();
+		password.setPreferredSize(new Dimension(150,30));
+		p.add(password);
+
+		b = new JButton("Submit");
+		p.add(b);
+		p.setPreferredSize(new Dimension(300,150));
+
+		JPanel wrapper = new JPanel(new GridBagLayout());
+		wrapper.setPreferredSize(new Dimension(400,300));
+		wrapper.add(p);
+
+		add(wrapper);
+		pack();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 	Boolean checkValidity(String username, String birthdate)
