@@ -1,5 +1,6 @@
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
+import java.awt.event.*;
 
 public class MainLogin extends javax.swing.JFrame 
 {
@@ -17,7 +18,6 @@ public class MainLogin extends javax.swing.JFrame
         submit = new javax.swing.JButton();
         title = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("WebBro Login");
         setResizable(false);
 
@@ -115,6 +115,7 @@ public class MainLogin extends javax.swing.JFrame
         {
             NextPage page = new NextPage();
             page.setVisible(true);
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
             JLabel label = new JLabel("Welcome.");
             page.getContentPane().add(label);
         }    
@@ -178,8 +179,8 @@ class NextPage extends javax.swing.JFrame
 {
     NextPage()
     {
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome");
         setSize(400,200);
     }
-}
+}   

@@ -59,7 +59,8 @@ public class AdminPage extends javax.swing.JFrame
     }
 
     public static void main(String args[]) 
-    {  
+    {
+        
         try 
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
@@ -87,10 +88,8 @@ public class AdminPage extends javax.swing.JFrame
         {
             java.util.logging.Logger.getLogger(AddDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(new Runnable() 
-        {
-            public void run() 
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new AdminPage().setVisible(true);
             }
         });
