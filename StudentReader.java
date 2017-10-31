@@ -38,8 +38,6 @@ class Demo
             System.out.println("Error." + e);
         }
 
-        System.out.println(data.size());
-
         for(int i = 0; i < data.size(); i++)
         {
             Student x = data.get(i);
