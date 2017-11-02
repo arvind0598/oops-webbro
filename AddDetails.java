@@ -40,7 +40,7 @@ public class AddDetails extends javax.swing.JFrame
 
         jLabel6.setText("Year :");
 
-        jFormattedTextField1.setText("DD.MM.YYYY");
+        jFormattedTextField1.setText("DDMMYYYY");
         jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() 
         {
             public void actionPerformed(java.awt.event.ActionEvent evt) 
@@ -152,19 +152,22 @@ public class AddDetails extends javax.swing.JFrame
             valid = false; 
 
             x.regNo = jTextField1.getText();
-            if(x.regNo.equals("") || Long.parseLong(x.regNo) <= 100000000) valid = false;
+            if(Long.parseLong(x.regNo) == 0 || x.regNo.length() != 9) valid = false;
             //this will also throw numberformatexception if invalid regno
 
             x.DOB = jFormattedTextField1.getText();           
-            if(x.DOB.equals("") || Long.parseLong(x.regNo) <= 1000000) valid = false;
-            //add extra conditions to make sure it is actually a valid DOB
+            int dd = Integer.parseInt(x.DOB.substring(0,2));
+            int mm = Integer.parseInt(x.DOB.substring(2,4));
+            int yyyy = Integer.parseInt(x.DOB.substring(4));
+            System.out.println(dd + " " + mm + " " + yyyy);
+            if(x.DOB.length() != 8 || dd < 1 || mm < 1 || yyyy < 1995 || dd > 31 || mm > 12 || yyyy > 2001)
+            valid = false;
 
             x.branch = jTextField3.getText();
             if(x.branch.equals("") || x.branch.length() > 3) valid = false;
 
             x.year = Integer.parseInt(jTextField4.getText());
-            if(jTextField4.getText().equals("")) valid = false;
-
+            if(x.year > 4 || x.year < 1) valid = false;
             if(!valid) throw new BadInputException();
         }
 
@@ -273,11 +276,23 @@ class Student implements Serializable
     String DOB;
     String branch;
     int year;
+    Subject x;
 
     Student()
     {
         name = regNo = DOB = branch = "uninit";
         year = -1; 
+    }
+}
+
+class Subject implements Serializable
+{
+    int marks[];
+    int attendance[];
+    Subject()
+    {
+        marks = new int[4];
+        attendance = new int[4];
     }
 }
 

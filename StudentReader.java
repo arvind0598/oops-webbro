@@ -8,11 +8,23 @@ class Student implements Serializable
     String DOB;
     String branch;
     int year;
+    Subject x;
 
     Student()
     {
         name = regNo = DOB = branch = "uninit";
         year = -1; 
+    }
+}
+
+class Subject implements Serializable
+{
+    int marks[];
+    int attendance[];
+    Subject()
+    {
+        marks = new int[4];
+        attendance = new int[4];
     }
 }
 
