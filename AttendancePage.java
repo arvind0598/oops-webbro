@@ -1,20 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package webbro;
-
-/**
- *
- * @author Pashchima Kamal
- */
 public class AttendancePage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AttendancePage
-     */
-    public AttendancePage() {
+    public AttendancePage() 
+    {
         initComponents();
     }
 
@@ -43,8 +30,9 @@ public class AttendancePage extends javax.swing.JFrame {
         dsdmax = new javax.swing.JLabel();
         engmax = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        submit = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         heading.setText("ATTENDANCE");
 
@@ -64,51 +52,64 @@ public class AttendancePage extends javax.swing.JFrame {
             }
         });
 
-        mathmax.setText("/120");
+        mathmax.setText("/40");
 
-        oopmax.setText("/120");
+        oopmax.setText("/40");
 
-        dsdmax.setText("/120");
+        dsdmax.setText("/40");
 
-        engmax.setText("/120");
+        engmax.setText("/40");
 
         back.setText("Back");
+
+        submit.setText("Submit");
+
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(back)
-                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(heading))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(regnolabel)
-                            .addComponent(mathlabel)
-                            .addComponent(englabel)
-                            .addComponent(dsdlabel)
-                            .addComponent(ooplabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addContainerGap()
+                        .addComponent(back)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(mathtext, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                                    .addComponent(ooptext)
-                                    .addComponent(dsdtext)
-                                    .addComponent(englishtext))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(52, 52, 52)
+                                .addComponent(heading))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dsdmax)
-                                    .addComponent(oopmax)
-                                    .addComponent(engmax)
-                                    .addComponent(mathmax)))
-                            .addComponent(regnotext, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                                    .addComponent(regnolabel)
+                                    .addComponent(mathlabel)
+                                    .addComponent(englabel)
+                                    .addComponent(dsdlabel)
+                                    .addComponent(ooplabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(mathtext)
+                                            .addComponent(ooptext)
+                                            .addComponent(dsdtext)
+                                            .addComponent(englishtext, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(dsdmax)
+                                            .addComponent(oopmax)
+                                            .addComponent(engmax)
+                                            .addComponent(mathmax)))
+                                    .addComponent(regnotext, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(submit)))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +119,7 @@ public class AttendancePage extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(20, 20, 20)
                         .addComponent(heading)
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -144,14 +145,85 @@ public class AttendancePage extends javax.swing.JFrame {
                             .addComponent(englabel)
                             .addComponent(englishtext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(engmax))))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(submit)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void regnotextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regnotextActionPerformed
-        // TODO add your handling code here:
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_regnotextActionPerformed
+        Boolean valid;
+        int one = -1;
+        int two = -1;
+        int three = -1;
+        int four = -1;
+
+        try
+        {
+            one = Integer.parseInt(mathtext);
+            two = Integer.parseInt(ooptext);
+            three = Integer.parseInt(dsdtext);
+            four = Integer.parseInt(englishtext);
+            if(one < 40 || two < 40 || three < 40 || four < 40)
+            {
+                valid = false;
+                throw new BadInputException();
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
+
+        ArrayList<Student> a = StudentReader.returnDatabase();
+            String stu = regnotext.getText();
+            Student obj = null; 
+            for(int i = 0; i < a.size(); i++)
+            {
+                if(a.get(i).regNo.equals(stu))
+                {
+                    obj = a.remove(i);
+                    break;
+                }
+            }
+
+            try
+            {
+                if(obj == null)
+                {
+                    valid = false;
+                    throw new BadInputException();
+                }
+                obj.x.attendance[0] = one;
+                obj.x.attendance[1] = two;
+                obj.x.attendance[2] = three;
+                obj.x.attendance[3] = four;
+                a.add(obj);
+            }
+            catch(BadInputException e)
+            {
+                JOptionPane.showMessageDialog(this, "Invalid Registration Number" , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            try
+            {
+                ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("database.txt"));
+                for(int i = 0; i < a.size(); i++)
+                o.writeObject(a.get(i));
+                o.writeObject(new Student());
+                o.close();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(this, e , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+        if(valid)
+        JOptionPane.showMessageDialog(this, "Attendance successfully updated." , "Updated", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_regnotextActionPerformed
 
     /**
@@ -206,5 +278,72 @@ public class AttendancePage extends javax.swing.JFrame {
     private javax.swing.JTextField ooptext;
     private javax.swing.JLabel regnolabel;
     private javax.swing.JTextField regnotext;
+    private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
+}
+
+class BadInputException extends Exception
+{
+    BadInputException()
+    {
+        System.out.println("One or more incorrect entries made. Try again?");
+    }
+}
+
+class StudentReader
+{
+    public static ArrayList<Student> returnDatabase() 
+    {
+        ArrayList<Student> data = new ArrayList<Student>();
+
+        try
+        {
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("database.txt"));
+            while(true)
+            {
+                Student s = (Student)o.readObject();
+                if(s.name.equals("uninit")) break;
+                data.add(s);
+            }
+            o.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error." + e);
+        }
+
+    return data;
+    }
+}
+
+class Student implements Serializable
+{
+    String name;
+    String regNo;
+    String DOB;
+    String branch;
+    int year;
+    Subject x;
+
+    Student()
+    {
+        name = regNo = DOB = branch = "uninit";
+        year = -1; 
+        x = new Subject();
+    }
+}
+
+class Subject implements Serializable
+{
+    double ses1[];
+    double ses2[];
+    double ends[];
+    int attendance[];
+    Subject()
+    {
+        ses1 = new double[4];
+        ses2 = new double[4];
+        ends = new double[4];
+        attendance = new int[4];
+    }
 }

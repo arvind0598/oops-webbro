@@ -1,5 +1,10 @@
-package webbro;
-public class AddDetails extends javax.swing.JFrame {
+import java.awt.event.*;
+import javax.swing.*;
+import java.io.*;
+import java.util.*;
+
+
+class AddDetails extends javax.swing.JFrame {
 
     /**
      * Creates new form AddDetails
@@ -31,7 +36,7 @@ public class AddDetails extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         back = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         heading.setText("STUDENT INFORMATION");
 
@@ -45,13 +50,6 @@ public class AddDetails extends javax.swing.JFrame {
 
         yearlabel.setText("Year :");
 
-        dobtext.setText("DD.MM.YYYY");
-        dobtext.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dobtextActionPerformed(evt);
-            }
-        });
-
         submit.setText("Submit");
         submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +58,12 @@ public class AddDetails extends javax.swing.JFrame {
         });
 
         back.setText("Back");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,14 +144,83 @@ public class AddDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void dobtextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobtextActionPerformed
-        // TODO add your handling code here:
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dobtextActionPerformed
+        JOptionPane.showMessageDialog(this, "Fuck", "Error", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_dobtextActionPerformed
 
-    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_submitActionPerformed
+   private void submitActionPerformed(java.awt.event.ActionEvent evt) 
+    {//GEN-FIRST:event_jButton1ActionPerformed
+        Student x = new Student();
+        Boolean valid = true;
 
+        try
+        {
+            x.name = nametext.getText();
+            if(x.name.equals(""))
+            valid = false; 
+
+            x.regNo = regnotext.getText();
+            if(Long.parseLong(x.regNo) == 0 || x.regNo.length() != 9) valid = false;
+            //this will also throw numberformatexception if invalid regno
+
+            x.DOB = dobtext.getText();           
+            int dd = Integer.parseInt(x.DOB.substring(0,2));
+            int mm = Integer.parseInt(x.DOB.substring(2,4));
+            int yyyy = Integer.parseInt(x.DOB.substring(4));
+            System.out.println(dd + " " + mm + " " + yyyy);
+            if(x.DOB.length() != 8 || dd < 1 || mm < 1 || yyyy < 1995 || dd > 31 || mm > 12 || yyyy > 2001)
+            valid = false;
+
+            x.branch = branchtext.getText();
+            if(x.branch.equals("") || x.branch.length() > 3) valid = false;
+
+            x.year = Integer.parseInt(yeartext.getText());
+            if(x.year > 4 || x.year < 1) valid = false;
+            if(!valid) throw new BadInputException();
+        }
+
+        catch(Exception e)
+        {
+            valid = false;
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+            x = new Student();
+        }
+
+        ArrayList<Student> data = new ArrayList<Student>();
+
+        try
+        {
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("database.txt"));
+            while(true)
+            {
+                Student s = (Student)o.readObject();
+                if(s.name.equals("uninit")) break;
+                data.add(s);
+            }
+            o.close();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        try
+        {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("database.txt"));
+            for(int i = 0; i < data.size(); i++)
+                o.writeObject(data.get(i));
+            o.writeObject(x);
+            o.writeObject(new Student());
+            o.close();
+            if(valid)
+                JOptionPane.showMessageDialog(this, "New Student has been added" , "Added", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
     /**
      * @param args the command line arguments
      */
@@ -198,4 +271,172 @@ public class AddDetails extends javax.swing.JFrame {
     private javax.swing.JLabel yearlabel;
     private javax.swing.JTextField yeartext;
     // End of variables declaration//GEN-END:variables
+}
+
+class AdminPage extends javax.swing.JFrame {
+
+    public AdminPage() 
+    {
+        initComponents();
+    }
+
+    private void initComponents() 
+    {
+        heading = new javax.swing.JLabel();
+        add = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
+
+        heading.setText("ADMIN MENU");
+
+        add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
+
+        update.setText("Update");
+
+        logout.setText("Logout");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(164, 164, 164)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(heading, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(heading)
+                .addGap(81, 81, 81)
+                .addComponent(add)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(update)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(logout)
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) 
+    {
+        AddDetails page = new AddDetails();
+        page.setVisible(true);
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_addActionPerformed
+
+  public static void main(String args[]) 
+    {
+        
+        try 
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) 
+            {
+                if ("Nimbus".equals(info.getName())) 
+                {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+    java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AdminPage().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add;
+    private javax.swing.JLabel heading;
+    private javax.swing.JButton logout;
+    private javax.swing.JButton update;
+    // End of variables declaration//GEN-END:variables
+}
+
+class Student implements Serializable
+{
+    String name;
+    String regNo;
+    String DOB;
+    String branch;
+    int year;
+    Subject x;
+
+    Student()
+    {
+        name = regNo = DOB = branch = "uninit";
+        year = -1; 
+    }
+}
+
+class Subject implements Serializable
+{
+    int marks[];
+    int attendance[];
+    Subject()
+    {
+        marks = new int[4];
+        attendance = new int[4];
+    }
+}
+
+class StudentReader
+{
+    public static void main(String[] args) 
+    {
+        ArrayList<Student> data = new ArrayList<Student>();
+
+        try
+        {
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("database.txt"));
+            while(true)
+            {
+                Student s = (Student)o.readObject();
+                if(s.name.equals("uninit")) break;
+                data.add(s);
+            }
+            o.close();
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error." + e);
+        }
+
+        for(int i = 0; i < data.size(); i++)
+        {
+            Student x = data.get(i);
+            System.out.println(x.name +  " " + x.regNo);
+        }
+    }
+}
+
+
+class BadInputException extends Exception
+{
+    BadInputException()
+    {
+        System.out.println("One or more incorrect entries made. Try again?");
+    }
 }

@@ -1,3 +1,6 @@
+import javax.swing.*;
+import java.awt.event.*;
+
 public class AdminPage extends javax.swing.JFrame {
 
     public AdminPage() 

@@ -14,16 +14,21 @@ class Student implements Serializable
     {
         name = regNo = DOB = branch = "uninit";
         year = -1; 
+        x = new Subject();
     }
 }
 
 class Subject implements Serializable
 {
-    int marks[];
+    double ses1[];
+    double ses2[];
+    double ends[];
     int attendance[];
     Subject()
     {
-        marks = new int[4];
+        ses1 = new double[4];
+        ses2 = new double[4];
+        ends = new double[4];
         attendance = new int[4];
     }
 }
@@ -50,10 +55,25 @@ class Demo
             System.out.println("Error." + e);
         }
 
-        for(int i = 0; i < data.size(); i++)
+        for(int j = 0; j < data.size(); j++)
         {
-            Student x = data.get(i);
-            System.out.println(x.name +  " " + x.regNo);
+            Student x = data.get(j);
+            System.out.println("DETAILS");
+            System.out.println(x.name +  " " + x.regNo + " " + x.DOB + " " + x.branch + " " + x.year);
+            System.out.println("MARKS");
+            System.out.println("SESS 1");
+            for(int i = 0; i < 4; i++)
+                System.out.println(x.x.ses1[i] + " ");
+            System.out.println("SESS 2");
+            for(int i = 0; i < 4; i++)
+                System.out.println(x.x.ses2[i] + " ");
+            System.out.println("END SEMS");
+            for(int i = 0; i < 4; i++)
+                System.out.println(x.x.ends[i] + " ");
+            System.out.println("ATTENDANCE");
+            for(int i = 0; i < 4; i++)
+                System.out.println(x.x.attendance[i] + " ");
+
         }
     }
 }
