@@ -31,13 +31,15 @@ public class ExamPage extends javax.swing.JFrame {
         labelsess1 = new javax.swing.JLabel();
         labelsess2 = new javax.swing.JLabel();
         labelends = new javax.swing.JLabel();
-        ses1 = new javax.swing.JTextField();
-        ses2 = new javax.swing.JTextField();
-        ends = new javax.swing.JTextField();
+        ses1text = new javax.swing.JTextField();
+        ses2text = new javax.swing.JTextField();
+        endstext = new javax.swing.JTextField();
         maxsess2 = new javax.swing.JLabel();
         maxsess1 = new javax.swing.JLabel();
         maxends = new javax.swing.JLabel();
         back = new javax.swing.JButton();
+        regnolabel = new javax.swing.JLabel();
+        regnotext = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,11 +51,11 @@ public class ExamPage extends javax.swing.JFrame {
 
         labelends.setText("End Semester :");
 
-        ses1.setText("jTextField1");
-
-        ses2.setText("jTextField2");
-
-        ends.setText("jTextField3");
+        ses1text.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ses1textActionPerformed(evt);
+            }
+        });
 
         maxsess2.setText("/15");
 
@@ -68,6 +70,8 @@ public class ExamPage extends javax.swing.JFrame {
             }
         });
 
+        regnolabel.setText("Registration No. :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,30 +82,35 @@ public class ExamPage extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(back))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(labelends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(labelsess1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(labelsess2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ses2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(ses1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(ends, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(maxsess1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(maxends)
-                                    .addComponent(maxsess2)))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(169, 169, 169)
-                        .addComponent(heading)))
-                .addContainerGap(134, Short.MAX_VALUE))
+                        .addComponent(heading))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelends)
+                                    .addComponent(labelsess2, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                                    .addComponent(labelsess1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(ses2text, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ses1text)
+                                    .addComponent(endstext, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(maxsess1))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(maxends)
+                                            .addComponent(maxsess2)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(regnolabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(regnotext, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,22 +119,26 @@ public class ExamPage extends javax.swing.JFrame {
                 .addComponent(back)
                 .addGap(9, 9, 9)
                 .addComponent(heading)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regnolabel)
+                    .addComponent(regnotext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelsess1)
-                    .addComponent(ses1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ses1text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maxsess1))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelsess2)
-                    .addComponent(ses2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ses2text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maxsess2))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelends)
-                    .addComponent(ends, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endstext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maxends))
-                .addGap(76, 76, 76))
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -134,6 +147,10 @@ public class ExamPage extends javax.swing.JFrame {
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_backActionPerformed
+
+    private void ses1textActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ses1textActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ses1textActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +189,7 @@ public class ExamPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JTextField ends;
+    private javax.swing.JTextField endstext;
     private javax.swing.JLabel heading;
     private javax.swing.JLabel labelends;
     private javax.swing.JLabel labelsess1;
@@ -180,7 +197,9 @@ public class ExamPage extends javax.swing.JFrame {
     private javax.swing.JLabel maxends;
     private javax.swing.JLabel maxsess1;
     private javax.swing.JLabel maxsess2;
-    private javax.swing.JTextField ses1;
-    private javax.swing.JTextField ses2;
+    private javax.swing.JLabel regnolabel;
+    private javax.swing.JTextField regnotext;
+    private javax.swing.JTextField ses1text;
+    private javax.swing.JTextField ses2text;
     // End of variables declaration//GEN-END:variables
 }
