@@ -30,6 +30,8 @@ class Subject implements Serializable
         ses2 = new double[4];
         ends = new double[4];
         attendance = new int[4];
+        for(int i = 0; i < 4; i++)
+            ses1[i] = ses2[i] = ends[i] = attendance[i] = -1;
     }
 }
 
